@@ -16,7 +16,7 @@ app.use(express.json());
 const port = process.env.PORT || 5000;
 
 // mongodb config
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.zwtgz.mongodb.net/?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@doctors-portal-new.nv2gm.mongodb.net`;
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -261,7 +261,7 @@ async function run() {
       const email = req.params.email;
       const user = await usersCollection.findOne({ email: email });
       // console.log(user);
-      const isAdmin = user.role === 'admin';
+      const isAdmin = user?.role === 'admin';
       res.send({ admin: isAdmin })
     })
 
